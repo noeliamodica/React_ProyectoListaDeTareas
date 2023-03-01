@@ -44,7 +44,7 @@ export default function TodoApp() {
         <div className="todoContainer">
             {
                 todos.map(item =>(
-                    <Todo item={item}/>
+                    <Todo  key={item.id} item={item}/>
 
                 ) )
             }
