@@ -1,6 +1,7 @@
 import { useState } from "react"
+import TodoApp from "./TodoApp.css";
 
-export default function Todo ({item, onUpdate}){
+export default function Todo ({item, onUpdate, onDelete}){
 
     const [isEdit, setIsEdit] = useState(false);
 
@@ -34,8 +35,9 @@ export default function Todo ({item, onUpdate}){
 
     function TodoElement (){
         return  <div className="todoInfo">
-                     {item.title} <button onClick={ ()=> setIsEdit(true) }>Edit</button>
-                     <button>Delete</button>
+                <span className="todoTitle"> {item.title} </span>
+                      <button className="button" onClick={ ()=> setIsEdit(true) }>Edit</button>
+                     <button className="buttonDelete" onClick={(e)=> onDelete(item.id) } >Delete</button>
                 </div>
     }
 
