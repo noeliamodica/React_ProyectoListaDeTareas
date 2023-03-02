@@ -15,7 +15,7 @@ export default function TodoApp() {
         //Coloco mi variable
         setTitle(value);
         
-    }
+     }
 
     function handleSubmit(e){
         e.preventDefault();
@@ -23,11 +23,20 @@ export default function TodoApp() {
             id: crypto.randomUUID(),
             title: title,
             completed: false
-        };
-
+        }
+    
         //Ya tengo el nuevo objeto, lo inserto en el estado
         setTodos([ ...todos, newTodo]);
-    }
+     
+    }    
+        //Lo utilizamos para actualizar el titulo de nuestros todos
+    function handleUpdate (id, value){
+        const temp=[...todos];
+        const item= temp.find(item=> item.id === id);
+        item.title=value;
+        setTodos(temp);
+
+    }    
 
     return(
     <div className="todoContainer">
@@ -44,7 +53,7 @@ export default function TodoApp() {
         <div className="todoContainer">
             {
                 todos.map(item =>(
-                    <Todo  key={item.id} item={item}/>
+                    <Todo  key={item.id} item={item} onUpdate={handleUpdate} />
 
                 ) )
             }
@@ -54,4 +63,4 @@ export default function TodoApp() {
 
     </div>
     )
-}
+        }

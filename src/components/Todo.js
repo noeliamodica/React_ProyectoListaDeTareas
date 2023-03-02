@@ -1,6 +1,6 @@
 import { useState } from "react"
 
-export default function Todo ({item}){
+export default function Todo ({item, onUpdate}){
 
     const [isEdit, setIsEdit] = useState(false);
 
@@ -15,12 +15,19 @@ export default function Todo ({item}){
 
         function handleChange(e){
             const value= e.target.value;
+            setNewValue(value);
+        }
+
+        function handleClickUpdate(e){
+            onUpdate(item.id, newValue);
+            setIsEdit(false);
+
         }
 
         return (
          <form className="todoUpdateForm" onSubmit={handleSubmit}>
-             <input type='text' className="todoInput" onChange={handleChange} />
-             <button> Update </button>
+             <input type='text' className="todoInput" onChange={handleChange} value={newValue} />
+             <button className="button" onClick={handleClickUpdate}> Update </button>
          </form>
          );
     }
